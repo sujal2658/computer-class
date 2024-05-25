@@ -1,0 +1,222 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>home</title>
+   <link rel="icon" href="{% static 'images/abc.png' %}" type="image/png">
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<style>
+   #loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.7);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+</style>
+
+</head>
+<body>
+<!--loading anim-->
+<div id="loading-overlay">
+   <video autoplay loop>
+      <source src="{% static 'images/loading.mp4' %}" type="video/mp4">
+      Your browser does not support the video tag.
+  </video>
+</div>
+
+<!--main content-->
+
+<header class="header">
+   
+   <section class="flex">
+
+      <a href="{% url 'home' %}" class="logo">ABC Edu.</a>
+
+      <form action="search.html" method="post" class="search-form">
+         <input type="text" name="search_box" required placeholder="search courses..." maxlength="100">
+         <button type="submit" class="fas fa-search"></button>
+      </form>
+
+      <div class="icons">
+         
+         <div id="menu-btn" class="fas fa-bars"></div>
+         <div id="search-btn" class="fas fa-search"></div>
+         <div id="user-btn" class="fas fa-user"></div>
+         <div id="toggle-btn" class="fas fa-sun"></div>
+      </div>
+      {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}" title="Logout">
+        <div id="user-btn" class="fas fa-sign-out-alt fa-2x"></div>
+    </a>
+      {% endif %}
+      <div class="profile">
+         <h3 class="name">Welcome {{ username }}</h3>
+         <p class="role">student</p>
+         <a href="{% url 'profile' %}" class="btn">View Profile</a>
+         <div class="flex-btn">
+             {% if user.is_authenticated %}
+                 <a href="{% url 'logout' %}" class="option-btn">Logout</a>
+             {% else %}
+                 <a href="{% url 'login' %}" class="option-btn">Login</a>
+                 <a href="{% url 'register' %}" class="option-btn">Register</a>
+             {% endif %}
+         </div>
+     </div>
+     
+
+   </section>
+
+</header>   
+
+<div class="side-bar">
+
+   <div id="close-btn">
+      <i class="fas fa-times"></i>
+   </div>
+
+   <div class="profile">
+      <img src="{% static 'images/74c32dbc.jpg' %}" class="image" alt="">
+      <h1>ABC 
+         <br>Education</h1>
+   </div>
+
+   <nav class="navbar">
+      <a href="{% url 'home' %}"><i class="fas fa-home"></i><span>home</span></a>
+      <a href="{% url 'about' %}"><i class="fas fa-question"></i><span>about</span></a>
+      <a href="{% url 'courses' %}"><i class="fas fa-graduation-cap"></i><span>Our courses</span></a>
+      <a href="{% url 'teachers' %}"><i class="fas fa-chalkboard-user"></i><span>teachers</span></a>
+      <a href="{% url 'contect' %}"><i class="fas fa-headset"></i><span>contact us</span></a>
+   </nav>
+
+</div>
+
+<section class="home-grid">
+
+   <h1 class="heading">quick options</h1>
+
+   <div class="box-container">
+
+      <div class="box">
+         <h3 class="title">likes and comments</h3>
+         <p class="likes">total likes : <span>25</span></p>
+         <a href="#" class="inline-btn">view likes</a>
+         <p class="likes">total comments : <span>12</span></p>
+         <a href="#" class="inline-btn">view comments</a>
+         <p class="likes">saved playlists : <span>4</span></p>
+         <a href="#" class="inline-btn">view playlists</a>
+      </div>
+
+
+      <div class="box">
+         <h3 class="title">popular topics</h3>
+         <div class="flex">
+            <a href="#"><i class="fab fa-html5"></i><span>HTML</span></a>
+            <a href="#"><i class="fab fa-css3"></i><span>CSS</span></a>
+            <a href="#"><i class="fab fa-js"></i><span>javascript</span></a>
+            <a href="#"><i class="fab fa-react"></i><span>react</span></a>
+            <a href="#"><i class="fab fa-php"></i><span>PHP</span></a>
+            <a href="#"><i class="fab fa-bootstrap"></i><span>bootstrap</span></a>
+         </div>
+      </div>
+
+
+      
+   </div>
+
+</section>
+
+
+
+<section class="courses">
+
+   <h1 class="heading">our courses</h1>
+
+   <div class="box-container">
+
+      <div class="box">
+         <div class="tutor">
+            <img src="{% static 'images/pic-2.jpg' %}" alt="">
+            <div class="info">
+               <h3>sujal rajput</h3>
+               <span>1-1-2024</span>
+            </div>
+         </div>
+         <div class="thumb">
+            <img src="{% static 'images/thumb-1.png' %}" alt="">
+            <span>10 videos</span>
+         </div>
+         <h3 class="title">complete HTML tutorial</h3>
+         <a href="{% url 'playlist' %}" class="inline-btn"> playlist</a>
+         <button class="paid-button">Pay Now</button>
+      </div>
+
+      <div class="box">
+         <div class="tutor">
+            <img src="{% static 'images/pic-3.jpg' %}" alt="">
+            <div class="info">
+               <h3>sujal rajput</h3>
+               <span>1-1-2024</span>
+            </div>
+         </div>
+         <div class="thumb">
+            <img src="{% static 'images/thumb-2.png' %}" alt="">
+            <span>10 videos</span>
+         </div>
+         <h3 class="title">complete CSS tutorial</h3>
+         <a href="{% url 'playlist' %}" class="inline-btn">playlist</a>
+         <button class="paid-button">Pay Now</button>
+      </div>
+
+      <div class="box">
+         <div class="tutor">
+            <img src="{% static 'images/pic-4.jpg' %}" alt="">
+            <div class="info">
+               <h3>sujal rajput</h3>
+               <span>1-1-2024</span>
+            </div>
+         </div>
+         <div class="thumb">
+            <img src="{% static 'images/thumb-3.png' %}" alt="">
+            <span>10 videos</span>
+         </div>
+         <h3 class="title">complete JS tutorial</h3>
+         <a href="{% url 'playlist' %}" class="inline-btn">playlist</a>
+         <button class="paid-button">Pay Now</button>
+      </div>
+
+
+      <h1>See More Courses in "Our Courses".</h1>
+
+</section>
+
+<footer class="footer">
+
+   &copy; copyright @ 2024 by <span>group-16</span> | all rights reserved!
+
+</footer>
+
+<!-- custom js file link  -->
+<script src="{% static 'js/script.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+   $(window).on('load', function() {
+      $('#loading-overlay').fadeOut('slow');
+  });
+</script>
+
+   
+</body>
+</html>
